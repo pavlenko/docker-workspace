@@ -122,7 +122,8 @@ services:
       context: php-7.3
       dockerfile: Dockerfile
       args:
-        DOCKER_PHP_ENABLE_XDEBUG: ${DOCKER_PHP_ENABLE_XDEBUG}
+        PHP_7_3_ENABLE_XDEBUG: ${PHP_7_3_ENABLE_XDEBUG}
+        PHP_7_3_ENABLE_POSTGRES: ${PHP_7_3_ENABLE_POSTGRES}
         TZ: ${DOCKER_TIMEZONE}
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www

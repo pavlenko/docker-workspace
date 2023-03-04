@@ -1,8 +1,7 @@
-ARG DOCKER_PHP_VERSION
-
 FROM php:7.3-fpm-alpine
 
-ARG DOCKER_PHP_ENABLE_XDEBUG='off'
+ARG PHP_7_3_ENABLE_XDEBUG='off'
+ARG PHP_7_3_ENABLE_POSTGRES='off'
 ARG TZ='UTC'
 
 # https://wiki.alpinelinux.org/wiki/Setting_the_timezone
@@ -90,26 +89,28 @@ RUN php -m && \
         pdo_mysql && \
     pecl install redis && \
     docker-php-ext-enable redis && \
-    # TODO separate layer \
     apk add --update --no-cache --virtual .docker-php-mongodb-dependencies \
     heimdal-dev && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
     apk del .docker-php-mongodb-dependencies && \
-    apk add --update --no-cache \
-        libpq && \
-    # Build dependancies for PostgreSQL \ TODO separate layer
-    apk add --update --no-cache --virtual .docker-php-postgresql-dependencies \
+
+# Enable postgres support
+RUN if [ "${PHP_7_3_ENABLE_POSTGRES}" == "on" ]; then \
+    yes | apk add --update --no-cache libpq && \
+    apk add --update --no-cache --virtual .docker-php-postgres-dependencies \
         postgresql-client \
         postgresql-dev && \
     docker-php-ext-configure pdo_pgsql && \
     docker-php-ext-configure pgsql && \
-    docker-php-ext-install pdo_pgsql \
-        pgsql && \
-    apk del .docker-php-postgresql-dependencies
+    docker-php-ext-install pdo_pgsql pgsql && \
+    apk del .docker-php-postgres-dependencies \
+ELSE \
+    echo "Skip postgres support"; \
+FI
 
 # Enable Xdebug
-RUN if [ "${DOCKER_PHP_ENABLE_XDEBUG}" == "on" ]; then \
+RUN if [ "${PHP_7_3_ENABLE_XDEBUG}" == "on" ]; then \
       yes | pecl install xdebug && \
       echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini && \
       echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini && \
