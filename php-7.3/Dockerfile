@@ -89,12 +89,7 @@ RUN php -m && \
         calendar \
         pdo_mysql && \
     pecl install redis && \
-    docker-php-ext-enable redis && \
-    apk add --update --no-cache --virtual .docker-php-mongodb-dependencies \
-    heimdal-dev && \
-    pecl install mongodb && \
-    docker-php-ext-enable mongodb && \
-    apk del .docker-php-mongodb-dependencies
+    docker-php-ext-enable redis
 
 # Enable mongo support
 RUN if [ "${PHP_7_4_ENABLE_MONGO}" == "on" ]; then \
@@ -102,7 +97,7 @@ RUN if [ "${PHP_7_4_ENABLE_MONGO}" == "on" ]; then \
             heimdal-dev && \
             pecl install mongodb && \
             docker-php-ext-enable mongodb && \
-            apk del .docker-php-mongodb-dependencies \
+            apk del .docker-php-mongodb-dependencies; \
     else \
       echo "Skip mongo support"; \
     fi
