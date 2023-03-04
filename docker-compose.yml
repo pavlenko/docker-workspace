@@ -109,7 +109,6 @@ services:
       - "${RABBITMQ_CLIENT_PORT}:5672"
       - "${RABBITMQ_MANAGE_PORT}:15672"
     volumes:
-      - ./rabbitmq-3.11/plugins:/etc/rabbitmq/enabled_plugins
       - ./rabbitmq-3.11/data:/var/lib/rabbitmq
     environment:
       TZ: ${DOCKER_TIMEZONE}
