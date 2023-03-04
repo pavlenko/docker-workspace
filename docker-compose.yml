@@ -86,3 +86,16 @@ services:
     networks:
       - dw-network
 
+  redis-7.0:
+    image: redis:7.0-alpine
+    ports:
+      - "${REDIS_PORT}:6379"
+    container_name: dw-redis-7.0
+    volumes:
+      - ./redis-7.0/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis-7.0/data:/var/lib/redis
+    environment:
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
