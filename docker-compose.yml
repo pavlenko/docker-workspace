@@ -5,7 +5,7 @@ networks:
 
 services:
 
-  nginx:
+  dw-nginx:
     image: nginx:stable-alpine
     container_name: dw-nginx
     restart: always
@@ -27,7 +27,7 @@ services:
     networks:
       - dw-network
 
-  mysql-5.7:
+  dw-mysql-5.7:
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
     container_name: dw-mysql-5.7
@@ -49,7 +49,7 @@ services:
     networks:
       - dw-network
 
-  mysql-8.0:
+  dw-mysql-8.0:
     image: mysql:8.0.21
     command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
     container_name: dw-mysql-8.0
@@ -71,7 +71,7 @@ services:
     networks:
       - dw-network
 
-  mongo-6.0:
+  dw-mongo-6.0:
     image: mongo:6.0
     container_name: dw-mongo-6.0
     restart: always
@@ -86,7 +86,7 @@ services:
     networks:
       - dw-network
 
-  redis-7.0:
+  dw-redis-7.0:
     image: redis:7.0-alpine
     ports:
       - "${REDIS_PORT}:6379"
