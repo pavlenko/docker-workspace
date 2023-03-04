@@ -20,7 +20,7 @@ services:
 #      - php-7.4
       - dw-mysql-8.0
       - dw-mysql-5.7
-      - redis
+      - dw-redis-7.0
       - dw-mongo-6.0
     environment:
       TZ: ${DOCKER_TIMEZONE}
