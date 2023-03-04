@@ -42,9 +42,9 @@ services:
     security_opt:
       - seccomp:unconfined
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_5_7_ROOT_PASS::-${MYSQL_ROOT_PASS}}
-      MYSQL_USER: ${MYSQL_5_7_USER:-${MYSQL_USER}}
-      MYSQL_PASSWORD: ${MYSQL_5_7_PASS:-${MYSQL_PASS}}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_5_7_ROOT_PASS}
+      MYSQL_USER: ${MYSQL_5_7_USER}
+      MYSQL_PASSWORD: ${MYSQL_5_7_PASS}
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
@@ -64,9 +64,9 @@ services:
     security_opt:
       - seccomp:unconfined
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_8_0_ROOT_PASS::-${MYSQL_ROOT_PASS}}
-      MYSQL_USER: ${MYSQL_8_0_USER:-${MYSQL_USER}}
-      MYSQL_PASSWORD: ${MYSQL_8_0_PASS:-${MYSQL_PASS}}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_8_0_ROOT_PASS}
+      MYSQL_USER: ${MYSQL_8_0_USER}
+      MYSQL_PASSWORD: ${MYSQL_8_0_PASS}
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
