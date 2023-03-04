@@ -26,8 +26,8 @@
 /mongo-6.0/dump/**
 !/mongo-6.0/dump/.gitkeep
 
-/redis-7.0/data/**
-!/redis-7.0/data/.gitkeep
+/redis-latest/data/**
+!/redis-latest/data/.gitkeep
 
 /rabbitmq-3.11/data/**
 !/rabbitmq-3.11/data/.gitkeep
