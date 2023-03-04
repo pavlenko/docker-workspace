@@ -124,6 +124,7 @@ services:
       args:
         PHP_7_3_ENABLE_XDEBUG: ${PHP_7_3_ENABLE_XDEBUG}
         PHP_7_3_ENABLE_POSTGRES: ${PHP_7_3_ENABLE_POSTGRES}
+        PHP_7_4_ENABLE_MONGO: ${PHP_7_4_ENABLE_MONGO}
         TZ: ${DOCKER_TIMEZONE}
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
