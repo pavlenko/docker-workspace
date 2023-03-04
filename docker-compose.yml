@@ -13,7 +13,7 @@ services:
       - "${NGINX_PORT}:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/logs:/var/log/nginx/
+      - ./nginx/logs:/var/log/nginx
       - ./projects:/var/www
     depends_on:
 #      - php-7.3
@@ -35,7 +35,7 @@ services:
     volumes:
       - ./mysql-5.7/conf.d:/etc/mysql/conf.d
       - ./mysql-5.7/data:/var/lib/mysql
-      - ./mysql-5.7/logs:/var/log/mysql/
+      - ./mysql-5.7/logs:/var/log/mysql
       - ./mysql-5.7/dump:/dump
     ports:
       - "${MYSQL_5_7_PORT}:3306"
@@ -57,7 +57,7 @@ services:
     volumes:
       - ./mysql-8.0/conf.d:/etc/mysql/conf.d
       - ./mysql-8.0/data:/var/lib/mysql
-      - ./mysql-8.0/logs:/var/log/mysql/
+      - ./mysql-8.0/logs:/var/log/mysql
       - ./mysql-8.0/dump:/dump
     ports:
       - "${MYSQL_8_0_PORT}:3306"
