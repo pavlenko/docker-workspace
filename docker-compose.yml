@@ -72,7 +72,7 @@ services:
     networks:
       - dw-network
 
-  dw-mongo-6.0:
+  dw-mongo-6.0: #TODO add 4.x and 5.x services
     image: mongo:6.0
     container_name: dw-mongo-6.0
     restart: always
@@ -87,7 +87,7 @@ services:
     networks:
       - dw-network
 
-  dw-redis-7.0:
+  dw-redis-7.0: #TODO change to latest
     image: redis:7.0-alpine
     container_name: dw-redis-7.0
     restart: always
@@ -101,7 +101,7 @@ services:
     networks:
       - dw-network
 
-  dw-rabbitmq-3.11:
+  dw-rabbitmq-3.11: #TODO change to latest
     image: rabbitmq:3.11-management-alpine
     container_name: dw-rabbitmq-3.11
     restart: always
