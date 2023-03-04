@@ -88,9 +88,10 @@ services:
 
   dw-redis-7.0:
     image: redis:7.0-alpine
+    container_name: dw-redis-7.0
+    restart: always
     ports:
       - "${REDIS_PORT}:6379"
-    container_name: dw-redis-7.0
     volumes:
       - ./redis-7.0/conf/redis.conf:/usr/local/etc/redis/redis.conf
       - ./redis-7.0/data:/var/lib/redis
@@ -99,3 +100,17 @@ services:
     networks:
       - dw-network
 
+  dw-rabbitmq-3.11:
+    image: rabbitmq:3.11-management-alpine
+    container_name: dw-rabbitmq-3.11
+    restart: always
+    ports:
+      - "${RABBITMQ_CLIENT_PORT}:5672"
+      - "${RABBITMQ_MANAGE_PORT}:15672"
+    volumes:
+      - ./rabbitmq-3.11/plugins:/etc/rabbitmq/enabled_plugins
+      - ./rabbitmq-3.11/data:/var/lib/rabbitmq
+    environment:
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
