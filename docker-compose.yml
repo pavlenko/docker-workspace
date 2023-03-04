@@ -3,4 +3,70 @@ version: '3.2'
 networks:
   dw-network:
 
-# TODO services
+services:
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: dw-nginx
+    restart: unless-stopped
+    ports:
+      - "${NGINX_PORT}:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx/
+      - ./projects:/var/www
+    depends_on:
+#      - php-7.3
+#      - php-7.4
+      - mysql-8.0
+      - mysql-5.7
+      - redis
+      - mongo
+    environment:
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
+  mysql-5.7:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
+    container_name: dw-mysql-5.7
+    restart: unless-stopped
+    volumes:
+      - ./mysql-5.7/conf.d:/etc/mysql/conf.d
+      - ./mysql-5.7/data:/var/lib/mysql
+      - ./mysql-5.7/logs:/var/log/mysql/
+      - ./mysql-5.7/dump:/dump
+    ports:
+      - "${MYSQL_5_7_PORT}:3306"
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_5_7_ROOT_PASS::-${MYSQL_ROOT_PASS}}
+      MYSQL_USER: ${MYSQL_5_7_USER:-${MYSQL_USER}}
+      MYSQL_PASSWORD: ${MYSQL_5_7_PASS:-${MYSQL_PASS}}
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
+  mysql-8.0:
+    image: mysql:8.0.21
+    command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
+    container_name: dw-mysql-8.0
+    restart: unless-stopped
+    volumes:
+      - ./mysql-8.0/conf.d:/etc/mysql/conf.d
+      - ./mysql-8.0/data:/var/lib/mysql
+      - ./mysql-8.0/logs:/var/log/mysql/
+      - ./mysql-8.0/dump:/dump
+    ports:
+      - "${MYSQL_8_0_PORT}:3306"
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_8_0_ROOT_PASS::-${MYSQL_ROOT_PASS}}
+      MYSQL_USER: ${MYSQL_8_0_USER:-${MYSQL_USER}}
+      MYSQL_PASSWORD: ${MYSQL_8_0_PASS:-${MYSQL_PASS}}
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
