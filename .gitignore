@@ -1,0 +1,38 @@
+# Docker containers
+.env
+
+/.ssh/**
+!/.ssh/.gitkeep
+
+/nginx/logs/**
+!/nginx/logs/.gitkeep
+
+/mysql-5.7/data/**
+!/mysql-5.7/data/.gitkeep
+/mysql-5.7/dump/**
+!/mysql-5.7/dump/.gitkeep
+/mysql-5.7/logs/**
+!/mysql-5.7/logs/.gitkeep
+
+/mysql-8.0/data/**
+!/mysql-8.0/data/.gitkeep
+/mysql-8.0/dump/**
+!/mysql-8.0/dump/.gitkeep
+/mysql-8.0/logs/**
+!/mysql-8.0/logs/.gitkeep
+
+/mongo-6.0/data/**
+!/mongo-6.0/data/.gitkeep
+/mongo-6.0/dump/**
+!/mongo-6.0/dump/.gitkeep
+
+/redis/data/**
+!/redis/data/.gitkeep
+
+# Projects
+/projects/**
+!/projects/.gitkeep
+
+# IDE
+.idea/
+.DS_Store
