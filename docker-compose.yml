@@ -22,6 +22,7 @@ services:
       - dw-mysql-5.7
       - dw-redis-7.0
       - dw-mongo-6.0
+      - dw-rabbitmq-3.11
     environment:
       TZ: ${DOCKER_TIMEZONE}
     networks:
