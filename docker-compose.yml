@@ -20,8 +20,8 @@ services:
 #      - php-7.4
       - dw-mysql-8.0
       - dw-mysql-5.7
-      - dw-redis-7.0
       - dw-mongo-6.0
+      - dw-redis-latest
       - dw-rabbitmq-3.11
     environment:
       TZ: ${DOCKER_TIMEZONE}
@@ -87,21 +87,21 @@ services:
     networks:
       - dw-network
 
-  dw-redis-7.0: #TODO change to latest
-    image: redis:7.0-alpine
-    container_name: dw-redis-7.0
+  dw-redis-latest:
+    image: redis:latest
+    container_name: dw-redis-latest
     restart: always
     ports:
       - "${REDIS_PORT}:6379"
     volumes:
-      - ./redis-7.0/conf/redis.conf:/usr/local/etc/redis/redis.conf
-      - ./redis-7.0/data:/var/lib/redis
+      - ./redis-latest/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis-latest/data:/var/lib/redis
     environment:
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
 
-  dw-rabbitmq-3.11: #TODO change to latest
+  dw-rabbitmq-3.11:
     image: rabbitmq:3.11-management-alpine
     container_name: dw-rabbitmq-3.11
     restart: always
@@ -111,6 +111,8 @@ services:
     volumes:
       - ./rabbitmq-3.11/data:/var/lib/rabbitmq
     environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
