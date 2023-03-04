@@ -16,7 +16,7 @@ services:
       - ./nginx/logs:/var/log/nginx
       - ./projects:/var/www
     depends_on:
-#      - php-7.3
+      - dw-php-7.3
 #      - php-7.4
       - dw-mysql-8.0
       - dw-mysql-5.7
