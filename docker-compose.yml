@@ -17,7 +17,7 @@ services:
       - ./projects:/var/www
     depends_on:
       - dw-php-7.3
-#      - php-7.4
+      - dw-php-7.4
       - dw-mysql-8.0
       - dw-mysql-5.7
       - dw-mongo-6.0
@@ -124,7 +124,7 @@ services:
       args:
         PHP_7_3_ENABLE_XDEBUG: ${PHP_7_3_ENABLE_XDEBUG}
         PHP_7_3_ENABLE_POSTGRES: ${PHP_7_3_ENABLE_POSTGRES}
-        PHP_7_4_ENABLE_MONGO: ${PHP_7_4_ENABLE_MONGO}
+        PHP_7_3_ENABLE_MONGO: ${PHP_7_3_ENABLE_MONGO}
         TZ: ${DOCKER_TIMEZONE}
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
@@ -139,6 +139,28 @@ services:
     networks:
       - dw-network
 #    extra_hosts:
-#      - 'project-1.localhost:192.168.65.2'
-#      - 'project-2.localhost:192.168.65.2'
-#      - 'project-3.localhost:192.168.65.2'
+
+  dw-php-7.4:
+    build:
+      context: php-7.4-workspace
+      dockerfile: Dockerfile
+      args:
+        PHP_7_4_ENABLE_XDEBUG: ${PHP_7_4_ENABLE_XDEBUG}
+        PHP_7_4_ENABLE_POSTGRES: ${PHP_7_4_ENABLE_POSTGRES}
+        PHP_7_4_ENABLE_MONGO: ${PHP_7_4_ENABLE_MONGO}
+        TZ: ${WORKSPACE_TIMEZONE}
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
+    working_dir: /var/www
+    container_name: dw-php-7.4
+    restart: always
+    privileged: true
+    volumes:
+      - ./.ssh:/home/www-data/.ssh
+      - ./php-7.4/php.ini:/usr/local/etc/php/php.ini
+      - ./php-7.4/supervisor.d:/etc/supervisor.d
+      - ./projects:/var/www
+    ports:
+      - "${PHP_7_4_PORT}:9000"
+    networks:
+      - dw-network
+#    extra_hosts:
