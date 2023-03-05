@@ -89,15 +89,7 @@ RUN php -m && \
     apk add --update --no-cache --virtual .docker-php-mongodb-dependencies heimdal-dev && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
-    apk del .docker-php-mongodb-dependencies && \
-    apk add --update --no-cache libpq && \
-    apk add --update --no-cache --virtual .docker-php-postgresql-dependencies \
-        postgresql-client \
-        postgresql-dev && \
-    docker-php-ext-configure pdo_pgsql && \
-    docker-php-ext-configure pgsql && \
-    docker-php-ext-install pdo_pgsql pgsql && \
-    apk del .docker-php-postgresql-dependencies
+    apk del .docker-php-mongodb-dependencies
 
 # Enable Xdebug
 RUN if [ "${PHP_7_4_ENABLE_XDEBUG}" == "on" ]; then \

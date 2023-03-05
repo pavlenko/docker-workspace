@@ -1,8 +1,6 @@
 FROM php:7.3-fpm-alpine
 
 ARG PHP_7_3_ENABLE_XDEBUG='off'
-ARG PHP_7_3_ENABLE_POSTGRES='off'
-ARG PHP_7_3_ENABLE_MONGO='off'
 ARG TZ='UTC'
 
 # https://wiki.alpinelinux.org/wiki/Setting_the_timezone
@@ -89,32 +87,12 @@ RUN php -m && \
         calendar \
         pdo_mysql && \
     pecl install redis && \
-    docker-php-ext-enable redis
-
-# Enable mongo support
-RUN if [ "${PHP_7_3_ENABLE_MONGO}" == "on" ]; then \
-        yes | apk add --update --no-cache --virtual .docker-php-mongodb-dependencies \
-            heimdal-dev && \
-            pecl install mongodb && \
-            docker-php-ext-enable mongodb && \
-            apk del .docker-php-mongodb-dependencies; \
-    else \
-      echo "Skip mongo support"; \
-    fi
-
-# Enable postgres support
-RUN if [ "${PHP_7_3_ENABLE_POSTGRES}" == "on" ]; then \
-        yes | apk add --update --no-cache libpq && \
-        apk add --update --no-cache --virtual .docker-php-postgres-dependencies \
-            postgresql-client \
-            postgresql-dev && \
-        docker-php-ext-configure pdo_pgsql && \
-        docker-php-ext-configure pgsql && \
-        docker-php-ext-install pdo_pgsql pgsql && \
-        apk del .docker-php-postgres-dependencies; \
-    else \
-        echo "Skip postgres support"; \
-    fi
+    docker-php-ext-enable redis && \
+    apk add --update --no-cache --virtual .docker-php-mongodb-dependencies heimdal-dev && \
+    pecl install mongodb && \
+    docker-php-ext-enable mongodb && \
+    apk del .docker-php-mongodb-dependencies
+#TODO maybe install redis & mongo like in 8.0 dockerfile
 
 # Enable Xdebug
 RUN if [ "${PHP_7_3_ENABLE_XDEBUG}" == "on" ]; then \
