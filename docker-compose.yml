@@ -19,6 +19,7 @@ services:
       - dw-php-7.3
       - dw-php-7.4
       - dw-php-8.0
+      - dw-php-8.2
       - dw-mysql-8.0
       - dw-mysql-5.7
       - dw-mongo-6.0
@@ -183,4 +184,25 @@ services:
       - dw-network
 #    extra_hosts:
 
-#TODO php 8.1 php8.2
+#TODO php-8.1
+
+  dw-php-8.2:
+    build:
+      context: php-8.2
+      dockerfile: Dockerfile
+      args:
+        PHP_8_0_ENABLE_XDEBUG: ${PHP_8_0_ENABLE_XDEBUG}
+        TZ: ${DOCKER_TIMEZONE}
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
+    working_dir: /var/www
+    container_name: dw-php-8.2
+    volumes:
+      - ./.ssh:/home/www-data/.ssh
+      - ./php-8.2/php.ini:/usr/local/etc/php/php.ini
+      - ./php-8.2/supervisor.d:/etc/supervisor.d
+      - ./projects:/var/www
+    ports:
+      - "${PHP_8_2_PORT}:9000"
+    networks:
+      - dw-network
+#    extra_hosts:

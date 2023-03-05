@@ -1,5 +1,11 @@
 ### FAQ
 
+#### Execute Docker container shell
+```shell
+docker exec -it <container> bash
+```
+for login as root add option ```-u 0```
+
 #### Run compose as current host user
 ```shell
 UID=$(id -u) GID=$(id -g) docker-compose <command> <args>
