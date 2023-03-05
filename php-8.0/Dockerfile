@@ -75,11 +75,11 @@ RUN apk add --update --no-cache --virtual build-essentials \
     docker-php-ext-install opcache && \
     docker-php-ext-install exif && \
     docker-php-ext-install zip && \
-    apk del build-essentials && \
     pecl install -o -f redis mongodb && \
     rm -rf /tmp/pear && \
     docker-php-ext-enable redis && \
     docker-php-ext-enable mongodb && \
+    apk del build-essentials && \
     rm -rf /usr/src/php*
 
 # Clean
