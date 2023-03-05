@@ -55,12 +55,14 @@ RUN apk add --update --no-cache --virtual build-essentials \
         libwebp-dev \
         libjpeg-turbo-dev \
         freetype-dev && \
+    docker-php-ext-configure bcmath --enable-bcmath && \
     docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-configure gettext && \
     docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-configure pcntl --enable-pcntl && \
     docker-php-ext-configure soap && \
     docker-php-ext-configure intl && \
+    docker-php-ext-install bcmath && \
     docker-php-ext-install intl && \
     docker-php-ext-install gettext && \
     docker-php-ext-install pcntl && \
