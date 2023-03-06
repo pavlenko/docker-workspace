@@ -21,10 +21,20 @@
 /mysql-8.0/logs/**
 !/mysql-8.0/logs/.gitkeep
 
-/mongo-6.0/data/**
-!/mongo-6.0/data/.gitkeep
-/mongo-6.0/dump/**
-!/mongo-6.0/dump/.gitkeep
+/mongo-4.x/data/**
+!/mongo-4.x/data/.gitkeep
+/mongo-4.x/dump/**
+!/mongo-4.x/dump/.gitkeep
+
+/mongo-5.x/data/**
+!/mongo-5.x/data/.gitkeep
+/mongo-5.x/dump/**
+!/mongo-5.x/dump/.gitkeep
+
+/mongo-6.x/data/**
+!/mongo-6.x/data/.gitkeep
+/mongo-6.x/dump/**
+!/mongo-6.x/dump/.gitkeep
 
 /redis/data/**
 !/redis/data/.gitkeep

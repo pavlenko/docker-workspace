@@ -19,10 +19,13 @@ services:
       - dw-php-7.3
       - dw-php-7.4
       - dw-php-8.0
+      - dw-php-8.1
       - dw-php-8.2
       - dw-mysql-8.0
       - dw-mysql-5.7
-      - dw-mongo-6.0
+      - dw-mongo-4.x
+      - dw-mongo-5.x
+      - dw-mongo-6.x
       - dw-redis
       - dw-rabbitmq
     environment:
@@ -74,16 +77,46 @@ services:
     networks:
       - dw-network
 
-  dw-mongo-6.0: #TODO add 4.x and 5.x services
-    image: mongo:6.0
-    container_name: dw-mongo-6.0
+  dw-mongo-4.x:
+    image: mongo:4
+    container_name: dw-mongo-4.x
     restart: always
     ports:
-      - "${MONGO_PORT}:27017"
+      - "${MONGO_4_X_PORT}:27017"
     volumes:
-      - ./mongo-6.0/data:/data/db
-      - ./mongo-6.0/conf:/data/configdb
-      - ./mongo-6.0/dump:/dump
+      - ./mongo-4.x/data:/data/db
+      - ./mongo-4.x/conf:/data/configdb
+      - ./mongo-4.x/dump:/dump
+    environment:
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
+  dw-mongo-5.x:
+    image: mongo:5
+    container_name: dw-mongo-5.x
+    restart: always
+    ports:
+      - "${MONGO_5_X_PORT}:27017"
+    volumes:
+      - ./mongo-5.x/data:/data/db
+      - ./mongo-5.x/conf:/data/configdb
+      - ./mongo-5.x/dump:/dump
+    environment:
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
+  dw-mongo-6.x:
+    image: mongo:6
+    container_name: dw-mongo-6.x
+    restart: always
+    ports:
+      - "${MONGO_6_X_PORT}:27017"
+    volumes:
+      - ./mongo-6.x/data:/data/db
+      - ./mongo-6.x/conf:/data/configdb
+      - ./mongo-6.x/dump:/dump
     environment:
       TZ: ${DOCKER_TIMEZONE}
     networks:
@@ -184,14 +217,33 @@ services:
       - dw-network
 #    extra_hosts:
 
-#TODO php-8.1
+  dw-php-8.1:
+    build:
+      context: php-8.1
+      dockerfile: Dockerfile
+      args:
+        PHP_8_1_ENABLE_XDEBUG: ${PHP_8_1_ENABLE_XDEBUG}
+        TZ: ${DOCKER_TIMEZONE}
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
+    working_dir: /var/www
+    container_name: dw-php-8.1
+    volumes:
+      - ./.ssh:/home/www-data/.ssh
+      - ./php-8.1/php.ini:/usr/local/etc/php/php.ini
+      - ./php-8.1/supervisor.d:/etc/supervisor.d
+      - ./projects:/var/www
+    ports:
+      - "${PHP_8_0_PORT}:9000"
+    networks:
+      - dw-network
+  #    extra_hosts:
 
   dw-php-8.2:
     build:
       context: php-8.2
       dockerfile: Dockerfile
       args:
-        PHP_8_0_ENABLE_XDEBUG: ${PHP_8_0_ENABLE_XDEBUG}
+        PHP_8_2_ENABLE_XDEBUG: ${PHP_8_2_ENABLE_XDEBUG}
         TZ: ${DOCKER_TIMEZONE}
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
