@@ -36,9 +36,7 @@ RUN apk add --no-cache bash \
         gmp-dev \
         postgresql-dev \
         gettext \
-        gettext-dev \
-        nodejs \
-        npm
+        gettext-dev
 
 RUN apk add --update --no-cache --virtual build-essentials \
         icu-dev \
