@@ -233,7 +233,7 @@ services:
       - ./php-8.1/supervisor.d:/etc/supervisor.d
       - ./projects:/var/www
     ports:
-      - "${PHP_8_0_PORT}:9000"
+      - "${PHP_8_1_PORT}:9000"
     networks:
       - dw-network
   #    extra_hosts:
