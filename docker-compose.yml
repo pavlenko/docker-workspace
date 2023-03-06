@@ -33,6 +33,19 @@ services:
     networks:
       - dw-network
 
+  dw-node-pm2:
+    build:
+      context: node-pm2
+      dockerfile: Dockerfile
+      args:
+        TZ: ${DOCKER_TIMEZONE}
+    container_name: dw-node-pm2
+#    restart: always
+    environment:
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
   dw-mysql-5.7:
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
