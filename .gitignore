@@ -6,6 +6,8 @@
 
 /nginx/logs/**
 !/nginx/logs/.gitkeep
+/nginx/sites-enabled/**
+!/nginx/sites-enabled/.gitkeep
 
 /mysql-5.7/data/**
 !/mysql-5.7/data/.gitkeep

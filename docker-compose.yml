@@ -6,13 +6,19 @@ networks:
 services:
 
   dw-nginx:
-    image: nginx:stable-alpine
+#    image: nginx:stable-alpine
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+      args:
+        TZ: ${DOCKER_TIMEZONE}
     container_name: dw-nginx
     restart: always
     ports:
       - "${NGINX_PORT}:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./nginx/logs:/var/log/nginx
       - ./projects:/var/www
     depends_on:
