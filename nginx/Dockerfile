@@ -5,3 +5,5 @@ RUN apk add --update --no-cache bash \
     acl \
     curl \
     wget
+
+EXPOSE 80 443

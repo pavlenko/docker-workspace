@@ -15,6 +15,7 @@ services:
     container_name: dw-nginx
     restart: always
     ports:
+      - "${NGINX_PORT_SSL}:443"
       - "${NGINX_PORT}:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
