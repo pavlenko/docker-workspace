@@ -23,8 +23,8 @@ services:
       - dw-mysql-8.0
       - dw-mysql-5.7
       - dw-mongo-6.0
-      - dw-redis-latest
-      - dw-rabbitmq-3.11
+      - dw-redis
+      - dw-rabbitmq
     environment:
       TZ: ${DOCKER_TIMEZONE}
     networks:
@@ -89,29 +89,29 @@ services:
     networks:
       - dw-network
 
-  dw-redis-latest:
+  dw-redis:
     image: redis:latest
-    container_name: dw-redis-latest
+    container_name: dw-redis
     restart: always
     ports:
       - "${REDIS_PORT}:6379"
     volumes:
-      - ./redis-latest/conf/redis.conf:/usr/local/etc/redis/redis.conf
-      - ./redis-latest/data:/var/lib/redis
+      - ./redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis/data:/var/lib/redis
     environment:
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
 
-  dw-rabbitmq-3.11:
+  dw-rabbitmq:
     image: rabbitmq:3.11-management-alpine
-    container_name: dw-rabbitmq-3.11
+    container_name: dw-rabbitmq
     restart: always
     ports:
       - "${RABBITMQ_CLIENT_PORT}:5672"
       - "${RABBITMQ_MANAGE_PORT}:15672"
     volumes:
-      - ./rabbitmq-3.11/data:/var/lib/rabbitmq
+      - ./rabbitmq/data:/var/lib/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}

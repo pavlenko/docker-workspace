@@ -26,11 +26,11 @@
 /mongo-6.0/dump/**
 !/mongo-6.0/dump/.gitkeep
 
-/redis-latest/data/**
-!/redis-latest/data/.gitkeep
+/redis/data/**
+!/redis/data/.gitkeep
 
-/rabbitmq-3.11/data/**
-!/rabbitmq-3.11/data/.gitkeep
+/rabbitmq/data/**
+!/rabbitmq/data/.gitkeep
 
 # Projects
 /projects/**
