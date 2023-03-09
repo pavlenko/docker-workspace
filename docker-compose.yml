@@ -30,6 +30,7 @@ services:
       - dw-php-8.2
       - dw-mysql-8.0
       - dw-mysql-5.7
+      - dw-postgres
       - dw-mongo-4.x
       - dw-mongo-5.x
       - dw-mongo-6.x
@@ -80,6 +81,21 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_8_0_ROOT_PASS}
       MYSQL_USER: ${MYSQL_8_0_USER}
       MYSQL_PASSWORD: ${MYSQL_8_0_PASS}
+      TZ: ${DOCKER_TIMEZONE}
+    networks:
+      - dw-network
+
+  dw-postgres:
+    image: postgres:alpine
+    container_name: dw-postgres
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/dump:/dump
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASS: ${POSTGRES_PASS}
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
