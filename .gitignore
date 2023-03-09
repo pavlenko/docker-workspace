@@ -23,6 +23,11 @@
 /mysql-8.0/logs/**
 !/mysql-8.0/logs/.gitkeep
 
+/postgres/data/**
+!/postgres/data/
+/postgres/dump/**
+!/postgres/dump/.gitkeep
+
 /mongo-4.x/data/**
 !/mongo-4.x/data/.gitkeep
 /mongo-4.x/dump/**
