@@ -186,6 +186,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
     container_name: dw-php-7.3
+    restart: always
     volumes:
       - ./.ssh:/home/www-data/.ssh
       - ./php-7.3/php.ini:/usr/local/etc/php/php.ini
@@ -230,6 +231,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
     container_name: dw-php-8.0
+    restart: always
     volumes:
       - ./.ssh:/home/www-data/.ssh
       - ./php-8.0/php.ini:/usr/local/etc/php/php.ini
@@ -251,6 +253,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
     container_name: dw-php-8.1
+    restart: always
     volumes:
       - ./.ssh:/home/www-data/.ssh
       - ./php-8.1/php.ini:/usr/local/etc/php/php.ini
@@ -272,6 +275,7 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     working_dir: /var/www
     container_name: dw-php-8.2
+    restart: always
     volumes:
       - ./.ssh:/home/www-data/.ssh
       - ./php-8.2/php.ini:/usr/local/etc/php/php.ini
