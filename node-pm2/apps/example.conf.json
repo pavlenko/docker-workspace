@@ -1,0 +1,8 @@
+{
+  "name": "example",
+  "script": "app.js",
+  "cwd": "/var/www/node-example/",
+  "env": {
+    "PORT": 3800
+  }
+}

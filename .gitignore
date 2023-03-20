@@ -49,6 +49,10 @@
 /rabbitmq/data/**
 !/rabbitmq/data/.gitkeep
 
+/node-pm2/apps/**
+!/node-pm2/apps/.gitkeep
+!/node-pm2/apps/example.conf.json
+
 # Projects
 /projects/**
 !/projects/.gitkeep
