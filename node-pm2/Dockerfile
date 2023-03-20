@@ -19,4 +19,6 @@ WORKDIR /var/www/
 
 EXPOSE 3800-3999
 
+USER node
+
 CMD pm2-runtime /home/node/conf/pm2-runtime.js
