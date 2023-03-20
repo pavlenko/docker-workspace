@@ -286,23 +286,3 @@ services:
     networks:
       - dw-network
 #    extra_hosts:
-
-  dw-node-pm2:
-    build:
-      context: node-pm2
-      dockerfile: Dockerfile
-      args:
-        TZ: ${DOCKER_TIMEZONE}
-    #user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
-    working_dir: /var/www
-    container_name: dw-node-pm2
-    restart: always
-    volumes:
-      - ./node-pm2/apps:/home/node/apps
-      - ./node-pm2/conf/pm2-runtime.js:/home/node/conf/pm2-runtime.js
-      - ./projects:/var/www
-    ports:
-      - "${NODE_PM2_PORTS}:3800-3999"
-    networks:
-      - dw-network
-#    extra_hosts:
