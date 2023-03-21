@@ -14,10 +14,12 @@ RUN apk add --update --no-cache bash \
     curl \
     wget
 
+RUN npm install -g pm2@latest && pm2 update
+
 WORKDIR /var/www
 
 EXPOSE 3900-3999
 
 #TODO install npm, npx, pm2
 #TODO command
-CMD node
+CMD pm2 start /home/node/pm2.config.js --no-daemon
