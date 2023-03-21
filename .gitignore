@@ -9,19 +9,19 @@
 /nginx/sites-enabled/**
 !/nginx/sites-enabled/.gitkeep
 
-/mysql-5.7/data/**
-!/mysql-5.7/data/.gitkeep
-/mysql-5.7/dump/**
-!/mysql-5.7/dump/.gitkeep
-/mysql-5.7/logs/**
-!/mysql-5.7/logs/.gitkeep
+/mysql-5.x/data/**
+!/mysql-5.x/data/.gitkeep
+/mysql-5.x/dump/**
+!/mysql-5.x/dump/.gitkeep
+/mysql-5.x/logs/**
+!/mysql-5.x/logs/.gitkeep
 
-/mysql-8.0/data/**
-!/mysql-8.0/data/.gitkeep
-/mysql-8.0/dump/**
-!/mysql-8.0/dump/.gitkeep
-/mysql-8.0/logs/**
-!/mysql-8.0/logs/.gitkeep
+/mysql-8.x/data/**
+!/mysql-8.x/data/.gitkeep
+/mysql-8.x/dump/**
+!/mysql-8.x/dump/.gitkeep
+/mysql-8.x/logs/**
+!/mysql-8.x/logs/.gitkeep
 
 /postgres/data/**
 !/postgres/data/
