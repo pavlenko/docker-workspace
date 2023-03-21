@@ -351,8 +351,10 @@ services:
     container_name: dw-node
     restart: always
     volumes:
-      - ./node/conf/pm2.config.js:/home/node/pm2.config.js
-      - ./node/conf/pm2.example.js:/home/node/pm2.example.js
+      - ./node/conf.d:/home/node/conf.d
+      - ./node/logs:/home/node/.pm2/logs/
+      - ./node/pm2.config.js:/home/node/pm2.config.js
+      - ./node/pm2.example.js:/home/node/pm2.example.js
       - ./projects:/var/www
     ports:
       - "3900-3999:3900-3999"
