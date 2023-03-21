@@ -3,7 +3,6 @@ version: '3.2'
 networks:
   dw-network:
 
-# TODO use profiles for conditional start services
 services:
 
   dw-nginx:
