@@ -1,7 +1,7 @@
 const http = require("http");
 
 const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PORT || 3309;
+const PORT = process.env.PORT || 3000;
 
 http
     .createServer((req, res) => {

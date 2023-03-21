@@ -352,7 +352,6 @@ services:
     restart: always
     volumes:
       - ./node/conf.d:/home/node/conf.d
-      - ./node/logs:/home/node/.pm2/logs/
       - ./node/pm2.config.js:/home/node/pm2.config.js
       - ./node/pm2.example.js:/home/node/pm2.example.js
       - ./projects:/var/www
