@@ -18,6 +18,8 @@ services:
       - "${NGINX_PORT}:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/snippets:/etc/nginx/snippets
+      - ./nginx/ssl:/etc/nginx/ssl
       - ./nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./nginx/logs:/var/log/nginx
       - ./projects:/var/www
@@ -39,6 +41,8 @@ services:
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
+    extra_hosts:
+      - "aaron-velocity.local.dev:127.0.0.1"
 
   dw-mysql-5.x:
 #    profiles:
