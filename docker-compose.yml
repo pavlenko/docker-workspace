@@ -22,7 +22,7 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl
       - ./nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./nginx/logs:/var/log/nginx
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     depends_on:
       - dw-php-7.3
       - dw-php-7.4
@@ -41,8 +41,7 @@ services:
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
-    extra_hosts:
-      - "aaron-velocity.local.dev:127.0.0.1"
+#    extra_hosts:
 
   dw-mysql-5.x:
 #    profiles:
@@ -228,7 +227,7 @@ services:
       - ./.ssh:/home/www-data/.ssh
       - ./php-7.3/php.ini:/usr/local/etc/php/php.ini
       - ./php-7.3/supervisor.d:/etc/supervisor.d
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     ports:
       - "${PHP_7_3_PORT}:9000"
     networks:
@@ -256,7 +255,7 @@ services:
       - ./.ssh:/home/www-data/.ssh
       - ./php-7.4/php.ini:/usr/local/etc/php/php.ini
       - ./php-7.4/supervisor.d:/etc/supervisor.d
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     ports:
       - "${PHP_7_4_PORT}:9000"
     networks:
@@ -283,7 +282,7 @@ services:
       - ./.ssh:/home/www-data/.ssh
       - ./php-8.0/php.ini:/usr/local/etc/php/php.ini
       - ./php-8.0/supervisor.d:/etc/supervisor.d
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     ports:
       - "${PHP_8_0_PORT}:9000"
     networks:
@@ -310,7 +309,7 @@ services:
       - ./.ssh:/home/www-data/.ssh
       - ./php-8.1/php.ini:/usr/local/etc/php/php.ini
       - ./php-8.1/supervisor.d:/etc/supervisor.d
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     ports:
       - "${PHP_8_1_PORT}:9000"
     networks:
@@ -337,7 +336,7 @@ services:
       - ./.ssh:/home/www-data/.ssh
       - ./php-8.2/php.ini:/usr/local/etc/php/php.ini
       - ./php-8.2/supervisor.d:/etc/supervisor.d
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     ports:
       - "${PHP_8_2_PORT}:9000"
     networks:
@@ -358,7 +357,7 @@ services:
       - ./node/conf.d:/home/node/conf.d
       - ./node/pm2.config.js:/home/node/pm2.config.js
       - ./node/pm2.example.js:/home/node/pm2.example.js
-      - ./projects:/var/www
+      - ${DOCKER_WWW_DIR:-./projects}:/var/www
     ports:
       - "3900-3999:3900-3999"
     networks:
