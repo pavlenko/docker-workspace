@@ -2,6 +2,7 @@ version: '3.2'
 
 networks:
   dw-network:
+    driver: bridge
 
 services:
 
@@ -29,25 +30,12 @@ services:
       - dw-php-8.0
       - dw-php-8.1
       - dw-php-8.2
-#      - dw-mysql-8.0
-#      - dw-mysql-5.7
-#      - dw-postgres
-#      - dw-mongo-4.x
-#      - dw-mongo-5.x
-#      - dw-mongo-6.x
-#      - dw-redis
-#      - dw-rabbitmq
     environment:
       TZ: ${DOCKER_TIMEZONE}
     networks:
       - dw-network
-#    extra_hosts:
 
   dw-mysql-5.x:
-#    profiles:
-#      - all
-#      - mysql
-#      - mysql-5.x
     image: mysql:5
     command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
     container_name: dw-mysql-5.x
@@ -70,10 +58,6 @@ services:
       - dw-network
 
   dw-mysql-8.x:
-#    profiles:
-#      - all
-#      - mysql
-#      - mysql-8.x
     image: mysql:8
     command: --default-authentication-plugin=mysql_native_password --skip_name_resolve
     container_name: dw-mysql-8.x
@@ -96,9 +80,6 @@ services:
       - dw-network
 
   dw-postgres:
-#    profiles:
-#      - all
-#      - postgress
     image: postgres:alpine
     container_name: dw-postgres
     restart: always
@@ -115,10 +96,6 @@ services:
       - dw-network
 
   dw-mongo-4.x:
-#    profiles:
-#      - all
-#      - mongo
-#      - mongo-4.x
     image: mongo:4
     container_name: dw-mongo-4.x
     restart: always
@@ -134,10 +111,6 @@ services:
       - dw-network
 
   dw-mongo-5.x:
-#    profiles:
-#      - all
-#      - mongo
-#      - mongo-5.x
     image: mongo:5
     container_name: dw-mongo-5.x
     restart: always
@@ -153,10 +126,6 @@ services:
       - dw-network
 
   dw-mongo-6.x:
-#    profiles:
-#      - all
-#      - mongo
-#      - mongo-6.x
     image: mongo:6
     container_name: dw-mongo-6.x
     restart: always
@@ -172,9 +141,6 @@ services:
       - dw-network
 
   dw-redis:
-#    profiles:
-#      - all
-#      - redis
     image: redis:latest
     container_name: dw-redis
     restart: always
@@ -189,9 +155,6 @@ services:
       - dw-network
 
   dw-rabbitmq:
-#    profiles:
-#      - all
-#      - rabbitmq
     image: rabbitmq:3.11-management-alpine
     container_name: dw-rabbitmq
     restart: always
@@ -208,11 +171,6 @@ services:
       - dw-network
 
   dw-php-7.3:
-#    profiles:
-#      - all
-#      - php
-#      - php-7
-#      - php-7.3
     build:
       context: php-7.3
       dockerfile: Dockerfile
@@ -232,14 +190,8 @@ services:
       - "${PHP_7_3_PORT}:9000"
     networks:
       - dw-network
-#    extra_hosts:
 
   dw-php-7.4:
-#    profiles:
-#      - all
-#      - php
-#      - php-7
-#      - php-7.4
     build:
       context: php-7.4
       dockerfile: Dockerfile
@@ -260,14 +212,8 @@ services:
       - "${PHP_7_4_PORT}:9000"
     networks:
       - dw-network
-#    extra_hosts:
 
   dw-php-8.0:
-#    profiles:
-#      - all
-#      - php
-#      - php-8
-#      - php-8.0
     build:
       context: php-8.0
       dockerfile: Dockerfile
@@ -287,14 +233,8 @@ services:
       - "${PHP_8_0_PORT}:9000"
     networks:
       - dw-network
-#    extra_hosts:
 
   dw-php-8.1:
-#    profiles:
-#      - all
-#      - php
-#      - php-8
-#      - php-8.1
     build:
       context: php-8.1
       dockerfile: Dockerfile
@@ -314,14 +254,8 @@ services:
       - "${PHP_8_1_PORT}:9000"
     networks:
       - dw-network
-  #    extra_hosts:
 
   dw-php-8.2:
-#    profiles:
-#      - all
-#      - php
-#      - php-8
-#      - php-8.2
     build:
       context: php-8.2
       dockerfile: Dockerfile
@@ -341,7 +275,6 @@ services:
       - "${PHP_8_2_PORT}:9000"
     networks:
       - dw-network
-#    extra_hosts:
 
   dw-node:
     build:
@@ -362,4 +295,3 @@ services:
       - "3900-3999:3900-3999"
     networks:
       - dw-network
-#    extra_hosts:
