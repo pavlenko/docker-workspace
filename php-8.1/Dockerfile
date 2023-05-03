@@ -80,6 +80,8 @@ RUN apk add --update --no-cache --virtual build-essentials \
     apk del build-essentials && \
     rm -rf /usr/src/php*
 
+RUN apk add --update --no-cache ffmpeg
+
 # Clean
 RUN rm -rf /var/cache/apk/* && docker-php-source delete
 
