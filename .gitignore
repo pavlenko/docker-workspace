@@ -49,10 +49,10 @@
 /rabbitmq/data/**
 !/rabbitmq/data/.gitkeep
 
-/node/conf.d/**
-!/node/conf.d/.gitkeep
-/node/logs/**
-!/node/logs/.gitkeep
+/node-14/conf.d/**
+!/node-14/conf.d/.gitkeep
+/node-14/logs/**
+!/node-14/logs/.gitkeep
 
 # Projects
 /projects/**

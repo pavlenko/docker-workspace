@@ -50,13 +50,15 @@ RUN apk add --update --no-cache icu-libs \
         make \
         musl-dev \
         mysql-client \
+        postgresql-client \
         openssh-client \
         pcre-dev \
         ssmtp \
         sqlite-dev \
         supervisor \
         su-exec \
-        wget
+        wget \
+        postgresql-dev
 
 #  Install php extensions
 RUN php -m && \
@@ -81,7 +83,9 @@ RUN php -m && \
         soap \
         zip \
         calendar \
-        pdo_mysql && \
+        pdo_mysql \
+        pgsql \
+        pdo_pgsql && \
     pecl install redis && \
     docker-php-ext-enable redis && \
     apk add --update --no-cache --virtual .docker-php-mongodb-dependencies heimdal-dev && \

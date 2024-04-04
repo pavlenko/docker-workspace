@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:5.6-fpm-alpine
 
 ARG TZ='UTC'
 
@@ -10,7 +10,6 @@ RUN echo "${TZ}" && apk --update add tzdata && \
 
 RUN apk add --no-cache bash \
         mysql-client \
-        postgresql-client \
         msmtp \
         perl \
         wget \
@@ -35,7 +34,6 @@ RUN apk add --no-cache bash \
         build-base \
         oniguruma-dev \
         gmp-dev \
-        postgresql-dev \
         gettext \
         gettext-dev
 
@@ -62,6 +60,7 @@ RUN apk add --update --no-cache --virtual build-essentials \
     docker-php-ext-configure soap && \
     docker-php-ext-configure intl && \
     docker-php-ext-install bcmath \
+                           calendar \
                            intl \
                            gettext \
                            pcntl \
@@ -70,20 +69,13 @@ RUN apk add --update --no-cache --virtual build-essentials \
                            soap \
                            xml \
                            gmp \
-                           pdo_pgsql \
                            mysqli \
                            pdo_mysql \
                            opcache \
                            exif \
                            zip && \
-    pecl install -o -f redis mongodb && \
-    rm -rf /tmp/pear && \
-    docker-php-ext-enable redis && \
-    docker-php-ext-enable mongodb && \
     apk del build-essentials && \
     rm -rf /usr/src/php*
-
-RUN apk add --update --no-cache ffmpeg
 
 # Clean
 RUN rm -rf /var/cache/apk/* && docker-php-source delete

@@ -1,0 +1,6 @@
+$user = new App\Models\User();
+$user->password = Hash::make('1984pavlenko');
+$user->email = 'pavlenko.obs@gmail.com';
+$user->name = 'pavlenko';
+$user->save();
+exit

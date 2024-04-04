@@ -10,6 +10,7 @@ RUN echo "${TZ}" && apk --update add tzdata && \
 
 RUN apk add --no-cache bash \
         mysql-client \
+        postgresql-client \
         msmtp \
         perl \
         wget \
