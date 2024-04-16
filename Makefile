@@ -30,3 +30,9 @@ reload/pm2:
 
 db/import:
 	docker-compose exec -T dw-mysql-8.x sh -c "mysql -u root -p mtbawbawskipatrol < /dump/manndev_bbsp.sql"
+
+pgsql-16/export:
+	docker-compose exec -T dw-pgsql-16 pg_dump -c -U ${POSTGRES_USER} $(db) > /dump/$(db).sql
+
+pgsql-16/import:
+	cat $(file) | docker exec -i dw-pgsql-16 psql -U ${POSTGRES_USER} -d $(db)

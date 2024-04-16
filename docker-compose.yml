@@ -98,6 +98,22 @@ services:
     networks:
       - dw-network
 
+  dw-pgsql-16:
+    image: postgres:16-alpine
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
+    container_name: dw-pgsql-16
+    restart: always
+    volumes:
+      - ./pgsql-16/data:/var/lib/postgresql/data
+      - ./pgsql-16/dump:/dump
+    ports:
+      - "${PGSQL_16_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${PGSQL_16_USER}
+      POSTGRES_PASSWORD: ${PGSQL_16_PASS}
+    networks:
+      - dw-network
+
   dw-mongo-4.x:
     image: mongo:4
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user

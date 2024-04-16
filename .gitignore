@@ -28,6 +28,11 @@
 /postgres/dump/**
 !/postgres/dump/.gitkeep
 
+/pgsql-16/data/**
+!/pgsql-16/data/
+/pgsql-16/dump/**
+!/pgsql-16/dump/.gitkeep
+
 /mongo-4.x/data/**
 !/mongo-4.x/data/.gitkeep
 /mongo-4.x/dump/**
