@@ -100,6 +100,7 @@ services:
 
   dw-mongo-4.x:
     image: mongo:4
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     container_name: dw-mongo-4.x
     restart: always
     ports:
@@ -115,6 +116,7 @@ services:
 
   dw-mongo-5.x:
     image: mongo:5
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     container_name: dw-mongo-5.x
     restart: always
     ports:
@@ -130,6 +132,7 @@ services:
 
   dw-mongo-6.x:
     image: mongo:6
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     container_name: dw-mongo-6.x
     restart: always
     ports:
