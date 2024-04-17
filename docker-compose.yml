@@ -162,6 +162,7 @@ services:
 
   dw-rabbitmq:
     image: rabbitmq:3.11-management-alpine
+    user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
     container_name: dw-rabbitmq
     restart: always
     ports:
