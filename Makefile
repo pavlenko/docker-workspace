@@ -19,9 +19,6 @@ cli/php-8.2:
 cli/node-14:
 	docker-compose exec dw-node-14 bash
 
-cli/postgres:
-	docker-compose exec dw-postgres bash
-
 reload/nginx:
 	docker-compose exec -it dw-nginx nginx -s reload
 
@@ -30,9 +27,6 @@ reload/pm2:
 
 db/import:
 	docker-compose exec -T dw-mysql-8.x sh -c "mysql -u root -p mtbawbawskipatrol < /dump/manndev_bbsp.sql"
-
-postgres/export:
-	docker-compose exec -T dw-postgres pg_dump --clean --if-exists -U ${POSTGRES_USER} $(db) > ./postgres/dump/$(db).sql
 
 # Export database data
 # make pgsql-16/export db=db_name

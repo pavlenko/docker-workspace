@@ -82,22 +82,6 @@ services:
     networks:
       - dw-network
 
-  dw-postgres:
-    image: postgres:alpine
-    container_name: dw-postgres
-    restart: always
-    volumes:
-      - ./postgres/data:/var/lib/postgresql/data
-      - ./postgres/dump:/dump
-    ports:
-      - "${POSTGRES_PORT}:5432"
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASS}
-      TZ: ${DOCKER_TIMEZONE}
-    networks:
-      - dw-network
-
   dw-pgsql-16:
     image: postgres:16-alpine
     user: ${DOCKER_UID}:${DOCKER_GID} #<-- here must be UID:GID of current host user
