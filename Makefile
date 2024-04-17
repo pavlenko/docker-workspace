@@ -31,8 +31,20 @@ reload/pm2:
 db/import:
 	docker-compose exec -T dw-mysql-8.x sh -c "mysql -u root -p mtbawbawskipatrol < /dump/manndev_bbsp.sql"
 
-pgsql-16/export:
-	docker-compose exec -T dw-pgsql-16 pg_dump -c -U ${POSTGRES_USER} $(db) > /dump/$(db).sql
+postgres/export:
+	docker-compose exec -T dw-postgres pg_dump --clean --if-exists -U ${POSTGRES_USER} $(db) > ./postgres/dump/$(db).sql
 
+# Export database data
+# make pgsql-16/export db=db_name
+pgsql-16/export:
+	docker-compose exec -T dw-pgsql-16 pg_dump --clean --if-exists -U ${PGSQL_16_USER} $(db) > ./pgsql-16/dump/$(db).sql
+
+# Create database
+# make pgsql-16/create db=db_name
+pgsql-16/create:
+	docker exec -i dw-pgsql-16 createdb -U ${PGSQL_16_USER} -O ${PGSQL_16_USER} $(db)
+
+# Import database data
+# make pgsql-16/import db=db_name file=filepath
 pgsql-16/import:
-	cat $(file) | docker exec -i dw-pgsql-16 psql -U ${POSTGRES_USER} -d $(db)
+	cat $(file) | docker exec -i dw-pgsql-16 psql -U ${PGSQL_16_USER} -d $(db)
